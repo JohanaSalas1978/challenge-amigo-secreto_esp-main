@@ -1,2 +1,5 @@
 # challenge-amigo-secreto_esp-main
-Desafio
+Para ejecutar el sistema debes poner:
+
+´´´´npm install react´´´´
+
