@@ -1,31 +1,48 @@
 // El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
-function asignarAmigoSecreto(nombres) {
-    if (nombres.length < 2) {
-        console.log("Debe haber al menos 2 participantes.");
-        return;
+let amigo = [];
+
+function agregarAmigo(){
+    const inputAmigo = document.getElementById("amigo");
+    const nombreAmigo = inputAmigo.value.trim();
+    if (nombreAmigo === ""){
+        alert ("Por favor, inserte un Nombre");
+    return;
     }
+    amigos.push (nombreAmigo);
 
-    let asignados = [...nombres]; // Copia la lista para asignaciones
-    let resultado = {};
+    actualizarLista();
 
-    for (let nombre of nombres) {
-        let posibles = asignados.filter(n => n !== nombre); // Evita autoasignación
+    inputAmigo.value = "";
+    inputAmigo.focus ();
 
-        if (posibles.length === 0) { 
-            return asignarAmigoSecreto(nombres); // Reintentar si falla
-        }
-
-        let elegido = posibles[Math.floor(Math.random() * posibles.length)];
-        resultado[nombre] = elegido;
-
-        asignados = asignados.filter(n => n !== elegido); // Elimina asignado
-    }
-
-    return resultado;
 }
 
-// Ejemplo de uso:
-let participantes = ["Ana", "Luis", "Carlos", "María", "Elena"];
-let asignaciones = asignarAmigoSecreto(participantes);
 
-console.log(asignaciones);
+
+
+function actualizarLista (){
+    const listaAmigoUl = document.getElementById("lsitaAmigos");
+    listaAmigosUl.innerHTML = "";
+
+    amigos.forEach (amigo => {
+        const li =document.createElement("li");
+    });
+
+}
+
+
+function sorteAmigo (){
+    if (amigos.length === 0) {
+        alert ("No hay amigos para sortear. Agrega nombres primero.");
+        return;
+    }
+    const indiceAleatorio = Math.floor(Math.random()* amigos.length);
+    const amigoSorteado = amigo[indiceAleatorio];
+    const resultadoUl = document.getElementById("resultado");
+    resultadoUl.innerHTML = `<li>${amigoSorteado}</li>`;
+}
+
+document.addEventListener("DOMContentLoaded", ()=>{
+    document.getElementById("btnAdicionar").addEventListener("click", agregarAmigo)
+    document.getElementById("btnSortear").addEventListener("click", sortearAmigo);
+});
